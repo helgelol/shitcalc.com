@@ -14,12 +14,16 @@
   let calculationComplete = false;
 
   function calculateMoneyMadeWhileShitting() {
-    hourlySalary = income / workingHoursPerYear;
-    dailyShittingTime = shitsTakenPerDay * (timeItTakesToShit / 60);
-    dailyShitIncome = dailyShittingTime * hourlySalary;
-    monthlyShitIncome = dailyShitIncome * workingDaysPerMonth;
-    yearlyShitIncome = dailyShitIncome * workingDaysPerYear;
-    calculationComplete = true;
+    if (isNaN(timeItTakesToShit)) {
+      return;
+    } else {
+      hourlySalary = income / workingHoursPerYear;
+      dailyShittingTime = shitsTakenPerDay * (timeItTakesToShit / 60);
+      dailyShitIncome = dailyShittingTime * hourlySalary;
+      monthlyShitIncome = dailyShitIncome * workingDaysPerMonth;
+      yearlyShitIncome = dailyShitIncome * workingDaysPerYear;
+      calculationComplete = true;
+    }
   }
 </script>
 
@@ -36,8 +40,8 @@
   </script>
 </svelte:head>
 
-<main class="svg-bg">
-  <div class="center">
+<main class="svg-bg flex w-full">
+  <div class="center w-full">
     <h1 class="pt-6 font-medium text-2xl text-gray-100">Shitcalc.com</h1>
     <p class="text-gray-100 mt-4">After much demand, it's finally here!</p>
     <form class="mt-6">
@@ -47,6 +51,7 @@
           class="w-64"
           type="range"
           bind:value={income}
+          on:change={calculateMoneyMadeWhileShitting}
           min="400000"
           max="1000000"
           step="25000"
@@ -54,7 +59,12 @@
         <p class="text-gray-100">{income}</p>
       </label>
       <p class="mt-8 text-gray-100">Shits per day</p>
-      <select selected class="w-64 h-8 rounded-lg" bind:value={shitsTakenPerDay}>
+      <select
+        selected
+        class="w-64 h-8 rounded-lg"
+        bind:value={shitsTakenPerDay}
+        on:change={calculateMoneyMadeWhileShitting}
+      >
         {#each shitsPerDay as shits}
           <option value={shits}>
             {shits}
@@ -62,23 +72,26 @@
         {/each}
       </select>
       <p class="mt-8 text-gray-100">Length of visit (minutes)</p>
-      <input
-        class="w-64 rounded-lg h-8 font-medium px-2"
-        type="text"
-        placeholder="  10, 15, 20, 25?"
-        bind:value={timeItTakesToShit}
-      />
+      <label>
+        <input
+          class="w-64"
+          type="range"
+          bind:value={timeItTakesToShit}
+          on:change={calculateMoneyMadeWhileShitting}
+          min="5"
+          max="30"
+          step="5"
+        />
+        <p class="text-gray-100">{timeItTakesToShit}</p>
+      </label>
       {#if isNaN(timeItTakesToShit)}
         <p class="text-red-300 text-2xl">Please enter a number</p>
       {/if}
     </form>
-    {#if !isNaN(timeItTakesToShit)}
-      <button class="bg-yellow-200 my-8 p-4 rounded-lg" on:click={calculateMoneyMadeWhileShitting}>
-        Calculate
-      </button>
 
+    {#if !isNaN(timeItTakesToShit)}
       {#if calculationComplete}
-        <p class="text-gray-100 text-xl">
+        <p class="text-gray-100 text-xl mt-6">
           Daily Shit Income {Math.round(dailyShitIncome)}kr
         </p>
         <p class="text-gray-100 text-xl">
@@ -89,9 +102,9 @@
         </p>
       {/if}
     {/if}
-  </div>
-  <div class="center text-gray-100 bottom-0">
-    <a href="https://kubes.no">by kubes.no</a>
+    <div class="text-gray-100 absolute bottom-0 mb-4 ml-4">
+      <a href="https://kubes.no">by kubes.no</a>
+    </div>
   </div>
 </main>
 
