@@ -4,7 +4,7 @@
   const workingDaysPerMonth = 22;
   let hourlySalary = 0;
   let dailyShittingTime = 0;
-  let income = 400000;
+  let income = 500000;
   let shitsPerDay = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   let shitsTakenPerDay;
   let timeItTakesToShit = 0;
@@ -52,8 +52,8 @@
           type="range"
           bind:value={income}
           on:change={calculateMoneyMadeWhileShitting}
-          min="400000"
-          max="1000000"
+          min="500000"
+          max="1250000"
           step="25000"
         />
         <p class="text-gray-100">{income}</p>
