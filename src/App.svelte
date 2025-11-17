@@ -29,15 +29,6 @@
 
 <svelte:head>
   <title>Shitcalc - Calculating shitty passive income.</title>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNDJ783K9C"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'G-JNDJ783K9C');
-  </script>
 </svelte:head>
 
 <main class="svg-bg flex w-full">
@@ -113,8 +104,9 @@
   @tailwind components;
   @tailwind utilities;
   :root {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-      'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+      'Helvetica Neue', sans-serif;
   }
   body {
     background-color: #330000;
