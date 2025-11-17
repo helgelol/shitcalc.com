@@ -94,7 +94,7 @@
       {/if}
     {/if}
     <div class="text-gray-100 absolute bottom-0 mb-4 ml-4">
-      <a href="https://kubes.no">by kubes.no</a>
+      <a href="https://kubes.no">by helge.dev</a>
     </div>
   </div>
 </main>
