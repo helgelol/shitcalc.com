@@ -4,7 +4,7 @@
   const workingDaysPerMonth = 22;
   let hourlySalary = 0;
   let dailyShittingTime = 0;
-  let income = 500000;
+  let income = 600000;
   let shitsPerDay = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   let shitsTakenPerDay;
   let timeItTakesToShit = 0;
@@ -29,15 +29,6 @@
 
 <svelte:head>
   <title>Shitcalc - Calculating shitty passive income.</title>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JNDJ783K9C"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'G-JNDJ783K9C');
-  </script>
 </svelte:head>
 
 <main class="svg-bg flex w-full">
@@ -52,8 +43,8 @@
           type="range"
           bind:value={income}
           on:change={calculateMoneyMadeWhileShitting}
-          min="500000"
-          max="1250000"
+          min="600000"
+          max="1500000"
           step="25000"
         />
         <p class="text-gray-100">{income}</p>
@@ -103,7 +94,7 @@
       {/if}
     {/if}
     <div class="text-gray-100 absolute bottom-0 mb-4 ml-4">
-      <a href="https://kubes.no">by kubes.no</a>
+      <a href="https://helge.dev">by helge.dev</a>
     </div>
   </div>
 </main>
@@ -113,8 +104,9 @@
   @tailwind components;
   @tailwind utilities;
   :root {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-      'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+      'Helvetica Neue', sans-serif;
   }
   body {
     background-color: #330000;

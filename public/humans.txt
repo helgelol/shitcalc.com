@@ -1,6 +1,6 @@
 /* SHITCALC */
-Developer: Helge Johansen
-Website: https://kubes.no
+Developer: Helge Falch
+Website: https://helge.dev
 Twitter: @helgelol
 
 Webapp made for @SteinarHansen to calculate his earnings
