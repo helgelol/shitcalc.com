@@ -12,16 +12,24 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
+
       - name: Use Node.js 24.x
         uses: actions/setup-node@v1
         with:
           node-version: 24.x
-      - run: yarn
-      - run: yarn build
-      - name: Deploy to netlify
-        uses: netlify/actions/cli@master
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Build
+        run: yarn build
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v3.0.0
+        with:
+          publish-dir: './dist'
+          production-deploy: true
+          deploy-message: ${{ github.event.head_commit.message }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        with:
-          args: deploy --dir=dist --prod --message "${{ github.event.head_commit.message }}"
