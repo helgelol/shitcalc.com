@@ -66,11 +66,11 @@ const App: Component = () => {
         </form>
         <Switch>
           <Match when={shitsTakenPerDay() > 3}>
-            <div class="mt-6 animate-pulse">
-              <p class="text-red-500 text-3xl font-bold">
+            <div class="mt-6 animate-bounce">
+              <p class="text-gray-200 text-3xl font-bold">
                 Seek out a medical professional 🚑
               </p>
-              <p class="text-gray-300 mt-2">
+              <p class="text-gray-200 mt-2">
                 That is {shitsTakenPerDay()} times a day. You are dying.
               </p>
             </div>
