@@ -1,30 +1,18 @@
 name: Deploy
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: [push]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v1
-
-      - name: Use Node.js 24.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 24.x
-
-      - name: Install dependencies
-        run: yarn
-
-      - name: Build
-        run: yarn build
+      - uses: actions/checkout@v1
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install
+      - run: bun run build
 
       - name: Deploy to Netlify
+        if: github.ref == 'refs/heads/main'
         uses: nwtgck/actions-netlify@v3.0.0
         with:
           publish-dir: './dist'
